@@ -9,9 +9,9 @@ describe Player do
       expect(player.name).to eq "Elia"
     end
   end
-  describe '#move' do
+  describe '#his_move' do
     it "makes a move" do
-      expect(player.move(:paper)).to eq :paper
+      expect(player.his_move(:paper)).to eq :paper
     end
   end
 end

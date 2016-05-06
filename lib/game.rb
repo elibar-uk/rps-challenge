@@ -5,30 +5,31 @@ class Game
   RULES = { rock: :scissors,
           paper: :rock,
           scissors: :paper }
+  WIN =  {
+              :rock => :paper,
+              :paper => :scissors,
+              :scissors => :rock
+            }
 
 attr_reader :player, :computer
-  def initialize(computer=Computer, player)
+  def initialize(computer, player)
     @player = player
-    @computer = computer.new
-    @winning_moves =  {
-        :rock => :paper,
-        :paper => :scissors,
-        :scissors => :rock
-      }
+    @computer = computer
+
   end
-  def self.create(player)
-    @game = Game.new(player)
+  def self.create(computer, player)
+    @game = Game.new(computer, player)
   end
 
   def self.instance
     @game
   end
 
-    def select_winner(player_move)
+    def select_winner(move)
         other_move= @computer.computer_move
-        if player_move == other_move
+        if move == other_move
           :draw
-        elsif @winning_moves[player_move] == other_move
+        elsif WIN[move] == other_move
           :looser
         else
           :winner

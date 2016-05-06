@@ -1,7 +1,7 @@
 
 class Computer
 
-attr_reader  :name
+attr_reader  :name, :comp_move
 
   MOVES = [:scissors, :paper, :rock]
 
@@ -10,6 +10,6 @@ attr_reader  :name
   end
 
   def computer_move
-    MOVES.sample
+    @comp_move=  MOVES.sample
   end
 end

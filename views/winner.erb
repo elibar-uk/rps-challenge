@@ -1,7 +1,9 @@
 
-
-You are a <%= @game.select_winner(@player_choice) %>
-
+You chose <%= @game.player.move %>
+<br>
+You are a <%= @game.select_winner(@game.player.move) %>
+<br>
+Computer chose <%= @game.computer.comp_move %>
 <form action="/play">
   <input type="submit" value="want to play again">
 </form>

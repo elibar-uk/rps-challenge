@@ -13,7 +13,8 @@ require './lib/computer'
   post '/names' do
     player = Player.new(params[:name])
     computer = Computer.new
-    @game = Game.create(player)
+    @game = Game.create(computer, player)
+    # puts "game is #{params[:name]}"
     redirect '/play'
   end
 
@@ -22,13 +23,16 @@ require './lib/computer'
   get '/play' do
     erb :play
   end
+
   get '/move' do
     erb :move
   end
 
   post '/move' do
     @player_choice = params[:move].to_sym
-    @result= @game.select_winner(@player_choice)
+    @game.player.his_move(@player_choice)
+    @game.computer.computer_move
+    p @player_choice
     redirect '/winner'
   end
 
